@@ -343,7 +343,7 @@ function hit() {
        
    }
    else {
-       21==playerTotal&&cuteAlert({
+       playerTotal==21&&cuteAlert({
         
             type: "success",
             title: "Superb!!!",
