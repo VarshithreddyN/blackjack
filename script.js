@@ -170,6 +170,10 @@ function initialDeal() {
     }
 
     // Deal(Instantiate) 2 Dealer cards and 2 Player cards
+    card1=new Card(deck.deal());
+    card2=new Card(deck.deal());
+    playerCard1=new Card(deck.deal());
+    playerCard2=new Card(deck.deal());
 
     // write your code here
 
@@ -177,11 +181,19 @@ function initialDeal() {
     // Open the board with 2 Dealer cards (one Dealer card is closed) and 2 Player cards (both open)
 
     // write your code here
+    card1.displayCard('card1',1);
+    card2.displayCard('card2',0);
+    playerCard1.displayCard('playerCard1',1);
+    playerCard2.displayCard('playerCard2',1);
 
 
     // Setting face card values to 10
 
     // write your code here
+    card1.value=card1.value>10?10:card1.value;
+    card2.value=card2.value>10?10:card2.value;
+    playerCard1.value=playerCard1.value>10?10:playerCard1.value;
+    playerCard2.value=playerCard2.value>10?10:playerCard2.value;
 
 
     // Getting player cards total - show an alert only if there is a Blackjack
@@ -197,8 +209,22 @@ function initialDeal() {
             location.reload()  // Load a new game
         })
     */
-
+   
     // write your code here
+    playerTotal=playerCard1.value+playerCard2.value;
+    if(playerTotal==21)
+    {
+        cuteAlert({
+            type: "success",
+            title: "Superb!!!",
+            message: "Blackjacked !!!",
+            buttonText: "Wohoo !!!",
+            img:"success.svg"
+        }).then(() => {
+            location.reload()  
+        })
+
+    }
 
 } //End of deal()
 
@@ -214,8 +240,40 @@ function stand() {
     // Checking Dealer and Player score - to give the result using cuteAlerts (just like the alert in initialDeal function)
 
     // write your code here
+    card2.flip();
+    dealerTotal=card1.value+card2.value;
+    if(playerTotal==21)
+    {
+        cuteAlert({
+            type: "success",
+            title: "Superb!!!",
+            message: "Blackjacked !!!",
+            buttonText: "Wohoo !!!",
+            img:"success.svg"
+        }).then(() => {
+            location.reload()  
+        })
 
-}
+    }
+    else{
+        cuteAlert({
+            type: "success",
+            title: "Superb!!!",
+            message: "Blackjacked !!!",
+            buttonText: "Wohoo !!!",
+            img:"success.svg"
+        }).then(() => {
+            location.reload()  
+        })
+    }
+
+
+        
+    
+    }
+
+
+
 
 // Variable to track the extra cards dealed
 let extraCnt = 0;
@@ -229,7 +287,34 @@ function hit() {
     // Dealing the extra cards that the player requests
 
     // write your code here
+    playerCard3=new Card(deck.deal());
+    playerCard4=new Card(deck.deal());
+    if(extraCnt==0)
+    {
+        playerCard3.displayCard('playerCard3',1);
+        playerCard3.value=playerCard3>10?10:playerCard3.value;
+        playerTotal=playerTotal+playerCard3.value;
+    }
+    else if(extraCnt==1)
+    {
+        playerCard4.displayCard('playerCard4',1);
+        playerCard4.value=playerCard4>10?10:playerCard4.value;
+        playerTotal=playerTotal+playerCard4.value;
 
+    }
+    else 
+    {
+        dealButton.style.display="none";
+        cuteAlert({
+            type: "warning",
+            title: "Sorry",
+            message: "Max cards released",
+            buttonText: "ok!!!",
+            img:"warning.svg"
+
+        })
+    }
+    
 
     // Dealing new cards 
     // Use conditional block
@@ -244,7 +329,31 @@ function hit() {
             buttonText: "OK",
             img:"warning.svg"
         })
+        
     */
+   if (playerTotal>21)
+   {
+    cuteAlert({
+        type: "error",
+        title: "busted..",
+        message: "you lost the game",
+        buttonText: "OK",
+        img:"error.svg"
+    }).then(()=>{location.reload()})
+       
+   }
+   else {
+       21==playerTotal&&cuteAlert({
+        
+            type: "success",
+            title: "Superb!!!",
+            message: "Blackjacked !!!",
+            buttonText: "Wohoo !!!",
+            img:"success.svg"
+        }).then(() => {
+            location.reload() 
+       });
+   }
 
     // write your code here
 
