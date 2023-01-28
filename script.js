@@ -25,7 +25,7 @@
     {
         let str=values[j]+" of "+suits[i];
         packArr.push(str);
-        packobj[str]=parseInt(j)+1;
+        packObj[str]=parseInt(j)+1;
     }
    }
        if(!asArray){
@@ -64,7 +64,8 @@ class Deck {
      */
     shuffle() {
         // write your code here
-        for(let j=this.deck.length,i=0;i<j;i++)
+        let j=this.deck.length;
+        for(let i=0;i<j;i++)
         {
             let suits=Math.floor(Math.random()*j);
             let values=this.deck[i];
@@ -317,7 +318,7 @@ function hit() {
         cuteAlert({
             type: "warning",
             title: "Sorry",
-            message: "Max cards released",
+            message: "Max cards dealed",
             buttonText: "ok!!!",
             img:"warning.svg"
 
@@ -378,5 +379,7 @@ function hit() {
  
 /**
  * Initial Deal
- */
+**/ 
 initialDeal();
+
+
